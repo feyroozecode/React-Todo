@@ -25,12 +25,26 @@ export default function App() {
   }
   
   function handleAdd() {
-    const item = { id: uuidv4(), text: input }
+    
+    // heck if the trimmed input is empty
+    const trimInput = input.trim();
+
+    if( trimInput  === '' ) {
+      // don4t add an empty item
+      return;
+    }
+
+    const item = { id: uuidv4(), text: trimInput }
+  
+    // Add new item to the existing todos array
     const updatedTodos = [...todos, item];
 
+    // Update the todos statewith new array
     setTodos(updatedTodos)
 
     setInput('')
+
+   
   }
 
   return (
