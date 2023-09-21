@@ -14,10 +14,8 @@ export default function App() {
   const [input, setInput] = useState('')
 
  
-  async function handleKeyPressed(event) {
-    if(event.key === "Enter") {
-      await handleAdd();
-    }
+  function handleKeyPressed(event) {
+    
   }
 
   function handleChange(event) {
@@ -45,7 +43,6 @@ export default function App() {
             placeholder='Enter a text'
             value={input}
             onChange={handleChange}
-            onKeyPress={handleKeyPressed} // Add this event handler 
             />     
         <button 
           onClick={handleAdd}

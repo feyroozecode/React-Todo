@@ -13,11 +13,7 @@ export default function App() {
   const [todos, setTodos] = useState(initialList)
   const [input, setInput] = useState('')
 
- 
-  async function handleKeyPressed(event) {
-    if(event.key === "Enter") {
-      await handleAdd();
-    }
+  const handleInputChange = > han
   }
 
   function handleChange(event) {
@@ -25,10 +21,9 @@ export default function App() {
   }
   
   function handleAdd() {
-    const item = { id: uuidv4(), text: input }
-    const updatedTodos = [...todos, item];
+    const item = todos.concat({ input, id: uuidv4() })
 
-    setTodos(updatedTodos)
+    setTodos(item)
 
     setInput('')
   }
@@ -44,8 +39,7 @@ export default function App() {
             type="text" 
             placeholder='Enter a text'
             value={input}
-            onChange={handleChange}
-            onKeyPress={handleKeyPressed} // Add this event handler 
+            onChange={handleInputChange}
             />     
         <button 
           onClick={handleAdd}

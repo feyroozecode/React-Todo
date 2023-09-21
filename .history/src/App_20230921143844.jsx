@@ -45,7 +45,7 @@ export default function App() {
             placeholder='Enter a text'
             value={input}
             onChange={handleChange}
-            onKeyPress={handleKeyPressed} // Add this event handler 
+            onK
             />     
         <button 
           onClick={handleAdd}

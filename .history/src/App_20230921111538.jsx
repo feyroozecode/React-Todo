@@ -13,24 +13,14 @@ export default function App() {
   const [todos, setTodos] = useState(initialList)
   const [input, setInput] = useState('')
 
- 
-  async function handleKeyPressed(event) {
-    if(event.key === "Enter") {
-      await handleAdd();
-    }
-  }
-
-  function handleChange(event) {
-    setInput(event.target.value);
+  const handleInputChange = (e) =>  {
+    setInput(e.target.value)
   }
   
   function handleAdd() {
-    const item = { id: uuidv4(), text: input }
-    const updatedTodos = [...todos, item];
+    const item = todos.concat({ input })
 
-    setTodos(updatedTodos)
-
-    setInput('')
+    setTodos(item)
   }
 
   return (
@@ -44,12 +34,11 @@ export default function App() {
             type="text" 
             placeholder='Enter a text'
             value={input}
-            onChange={handleChange}
-            onKeyPress={handleKeyPressed} // Add this event handler 
+            onChange={handleInputChange}
             />     
         <button 
           onClick={handleAdd}
-          type="button"
+          type='button'
           >Ajouter</button>      
          <p>
           <i>Live Todo: </i> <strong> { input } </strong> 
@@ -57,8 +46,8 @@ export default function App() {
         
           <ul>
           {
-            todos.map((item => (
-              <li key={item.id}> { item.text } </li>
+            todos.map(((item, index) => (
+              <li key={index}> { item.text } </li>
             )))
           }
      </ul>
