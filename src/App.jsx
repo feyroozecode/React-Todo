@@ -84,10 +84,10 @@ export default function App() {
             onChange={onChange}
             onKeyPress={handleKey} // Add this event handler 
             />     
-             <button 
-          onClick={onAdd}
-          type="button"
-          >Ajouter</button>   
+            
+           <AddBtn 
+              theAdd={onAdd}
+           />
        </div>
        
           
@@ -112,3 +112,20 @@ export default function App() {
      </>
     );
   }
+
+  function AddBtn ({theAdd}) {
+    const [ hovered, setHovered ] = useState(false)
+
+    return (
+      <>
+         <button 
+              onClick={theAdd}
+              onMouseEnter={ () => setHovered(true)  }
+              onMouseLeave={ () => setHovered(false) }
+              type="button"
+          >
+           { hovered ? " Ajouter" : 'Cliquer ici' }
+          </button>   
+      </>
+    );
+  } 
