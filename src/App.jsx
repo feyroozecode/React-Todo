@@ -30,7 +30,7 @@ export default function App() {
     const trimInput = input.trim();
 
     if( trimInput  === '' ) {
-      // don4t add an empty item
+      // dont add an empty item
       return;
     }
 
@@ -51,36 +51,64 @@ export default function App() {
     <>
       <div>
         <center> <h1> React Todo </h1> </center>
+
+      <AddItem 
+          name={input}
+          onChange={handleChange}
+          onAdd={handleAdd}
+          handleKey={handleKeyPressed}
+      />
+
       </div>
 
       <div>
-        <input 
-            type="text" 
-            placeholder='Enter a text'
-            value={input}
-            onChange={handleChange}
-            onKeyPress={handleKeyPressed} // Add this event handler 
-            />     
-        <button 
-          onClick={handleAdd}
-          type="button"
-          >Ajouter</button>      
-         <p>
-          <i>Live Todo: </i> <strong> { input } </strong> 
-        </p>
-        
-          <ul>
-          {
-            todos.map((item => (
-              <li key={item.id}> { item.text } </li>
-            )))
-          }
-     </ul>
+        <List list={todos} />
       </div>
      
    
  
     </>
-  )
+  );
 }
 
+  function AddItem ({text, onChange, handleKey, onAdd} ) {
+    return ( 
+      <> 
+      <div>
+       <div className="input-container">
+       <input 
+            className='input_field'
+            type="text" 
+            placeholder='Enter a text'
+            value={text}
+            onChange={onChange}
+            onKeyPress={handleKey} // Add this event handler 
+            />     
+             <button 
+          onClick={onAdd}
+          type="button"
+          >Ajouter</button>   
+       </div>
+       
+          
+         <p>
+          <i>Live Todo: </i> <strong> { text } </strong> 
+        </p>
+    </div>
+    </>
+  );
+}
+
+  function  List( {list} ) {
+      return (
+        <> 
+          <ul>
+          {
+            list.map((item => (
+              <li key={item.id}> { item.text } </li>
+            )))
+          }
+        </ul>
+     </>
+    );
+  }

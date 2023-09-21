@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px
+}
